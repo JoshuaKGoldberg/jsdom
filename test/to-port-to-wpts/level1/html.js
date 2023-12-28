@@ -1,5 +1,5 @@
 "use strict";
-const { assert } = require("chai");
+const assert = require("node:assert/strict");
 const { describe, specify } = require("mocha-sugar-free");
 
 const hc_staff = require("./html/files/hc_staff.html");
@@ -2289,7 +2289,7 @@ describe("level1/html", () => {
     attrValue = testEmployee.getAttribute("class");
 
     // XXX SUPERSEDED BY DOM4
-    assert.strictEqual(attrValue, null, "attrValue");
+    assert.equal(attrValue, null, "attrValue");
     //    test.equal(attrValue, "", 'attrValue');
   });
 

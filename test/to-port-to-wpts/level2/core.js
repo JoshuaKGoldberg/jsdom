@@ -1,4 +1,4 @@
-const { assert } = require("chai");
+const assert = require("node:assert/strict");
 const { beforeEach, afterEach, describe, specify } = require("mocha-sugar-free");
 
 describe("level2/core", () => {

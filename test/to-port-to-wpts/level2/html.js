@@ -1,4 +1,5 @@
-const { assert } = require("chai");
+"use strict";
+const assert = require("node:assert/strict");
 const { describe, specify } = require("mocha-sugar-free");
 
 const { JSDOM } = require("../../..");
@@ -7816,7 +7817,7 @@ describe("level2/html", () => {
     assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(7);
     vsrc = testNode.src;
-    assert.isTrue(vsrc.endsWith('/pix/submit.gif'), 'srcLink');
+    assert.equal(vsrc.endsWith('/pix/submit.gif'), true, 'srcLink');
   });
 
   /**
@@ -8737,7 +8738,7 @@ describe("level2/html", () => {
     assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcite = testNode.cite;
-    assert.isTrue(vcite.endsWith('/files/ins-reasons.html'), 'citeLink');
+    assert.equal(vcite.endsWith('/files/ins-reasons.html'), true, 'citeLink');
   });
 
   /**
@@ -8790,7 +8791,7 @@ describe("level2/html", () => {
     assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcite = testNode.cite;
-    assert.isTrue(vcite.endsWith('/files/del-reasons.html'), 'citeLink');
+    assert.equal(vcite.endsWith('/files/del-reasons.html'), true, 'citeLink');
   });
 
   /**
@@ -8951,7 +8952,7 @@ describe("level2/html", () => {
     testNode = nodeList.item(1);
     vcode = testNode.code;
 
-    assert.strictEqual(vcode, "", "codeLink");
+    assert.equal(vcode, "", "codeLink");
   });
 
   /**
@@ -10263,7 +10264,7 @@ describe("level2/html", () => {
     assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcite = testNode.cite;
-    assert.isTrue(vcite.endsWith('/files/Q.html'), 'citeLink');
+    assert.equal(vcite.endsWith('/files/Q.html'), true, 'citeLink');
   });
 
   /**
@@ -10291,7 +10292,7 @@ describe("level2/html", () => {
     assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcite = testNode.cite;
-    assert.isTrue(vcite.endsWith('/files/BLOCKQUOTE.html'), 'citeLink');
+    assert.equal(vcite.endsWith('/files/BLOCKQUOTE.html'), true, 'citeLink');
   });
 
   /**
@@ -18170,16 +18171,16 @@ describe("level2/html", () => {
       var element = doc.createElement(tagName);
       // http://www.w3.org/html/wg/drafts/html/master/forms.html#attr-fe-name plus
       // http://www.w3.org/html/wg/drafts/html/master/infrastructure.html#reflect
-      assert.strictEqual(element.name, '', '<' + tagName + '> elements should have empty string name properties by default.');
+      assert.equal(element.name, '', '<' + tagName + '> elements should have empty string name properties by default.');
 
       element.name = 'foo';
-      assert.strictEqual(element.name, 'foo', '<' + tagName + '> elements should allow setting and retrieving their name properties.');
-      assert.strictEqual(element.name, element.getAttribute('name'), '<' + tagName + '> elements should have name properties equal to their name attributes.');
+      assert.equal(element.name, 'foo', '<' + tagName + '> elements should allow setting and retrieving their name properties.');
+      assert.equal(element.name, element.getAttribute('name'), '<' + tagName + '> elements should have name properties equal to their name attributes.');
     });
 
     ['section', 'abbr', 'label', 'option', 'customTag'].forEach(function (tagName) {
       var element = doc.createElement(tagName);
-      assert.strictEqual(element.name, undefined, '<' + tagName + '> elements should not have a value for the name property');
+      assert.equal(element.name, undefined, '<' + tagName + '> elements should not have a value for the name property');
     });
 
   });
@@ -18190,24 +18191,24 @@ describe("level2/html", () => {
     doc.body.innerHTML = '<input id="x" type="checkbox" checked>';
     var el1 = doc.getElementById("x");
 
-    assert.strictEqual(el1.checked, true, "no attribute value");
+    assert.equal(el1.checked, true, "no attribute value");
 
     doc.body.innerHTML = '<input id="x" type="checkbox" checked="">';
     var el2 = doc.getElementById("x");
 
-    assert.strictEqual(el2.checked, true, "empty attribute value");
+    assert.equal(el2.checked, true, "empty attribute value");
 
     doc.body.innerHTML = '<input id="x" type="checkbox">';
     var el3 = doc.getElementById("x");
     el3.defaultChecked = false;
 
-    assert.strictEqual(el3.hasAttribute("checked"), false, "staying false does not insert attribute");
+    assert.equal(el3.hasAttribute("checked"), false, "staying false does not insert attribute");
 
     doc.body.innerHTML = '<input id="x" type="checkbox" checked="checked">';
     var el4 = doc.getElementById("x");
     el4.defaultChecked = false;
 
-    assert.strictEqual(el4.hasAttribute("checked"), false, "changing to false removes attribute");
+    assert.equal(el4.hasAttribute("checked"), false, "changing to false removes attribute");
 
   });
 
@@ -18245,7 +18246,7 @@ describe("level2/html", () => {
     var doc = (new JSDOM("<img alt=\"alt\" />")).window.document;
     var img = doc.getElementsByTagName("img").item(0);
 
-    assert.strictEqual(img.alt, "alt", "<img> elements should not have their attribute properties masked by defining " +
+    assert.equal(img.alt, "alt", "<img> elements should not have their attribute properties masked by defining " +
       "a normalize method on string instances");
 
     String.prototype.normalize = oldNormalize;
@@ -18261,7 +18262,7 @@ describe("level2/html", () => {
     var form = doc.getElementsByTagName("form").item(0);
     form.action = "test.html";
 
-    assert.strictEqual(form.action, "test.html", "<form> elements should not have their attribute properties masked " +
+    assert.equal(form.action, "test.html", "<form> elements should not have their attribute properties masked " +
       "by defining a normalize method on string instances when removing empty attributes");
 
     String.prototype.normalize = oldNormalize;
@@ -18271,7 +18272,7 @@ describe("level2/html", () => {
     var doc = (new JSDOM()).window.document;
     var row = doc.createElement('tr');
 
-    assert.strictEqual(row.rowIndex, -1, "rowIndex should equal -1");
+    assert.equal(row.rowIndex, -1, "rowIndex should equal -1");
   });
 
   specify("radio_group_with_same_name_in_several_forms_work", () => {

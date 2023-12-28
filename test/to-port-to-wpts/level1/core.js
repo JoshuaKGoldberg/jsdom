@@ -1,5 +1,5 @@
 "use strict";
-const { assert } = require("chai");
+const assert = require("node:assert/strict");
 const { describe, specify } = require("mocha-sugar-free");
 
 const staff = require("./core/files/staff.xml");
@@ -5712,7 +5712,7 @@ describe("level1/core", () => {
 
     // XXX SUPERSEDED BY DOM4
     //    test.equal(attrValue, "", 'attrValue');
-    assert.strictEqual(attrValue, null, "attrValue");
+    assert.equal(attrValue, null, "attrValue");
   });
 
   /**
@@ -13936,44 +13936,44 @@ describe("level1/core", () => {
     children.item(0).splitText("5");
 
     assert.equal(children.length, 3, "After split, the children count should be 3");
-    assert.strictEqual(
+    assert.equal(
       children.item(children.length - 1).nodeType,
       doc.ELEMENT_NODE,
       "After split, the last child should be an ELEMENT_NODE"
     );
-    assert.strictEqual(
+    assert.equal(
       children.item(0),
       firstTextNode,
       "After split the first child should still be the same object as before"
     );
-    assert.strictEqual(children.item(1).nodeType, doc.TEXT_NODE, "After split the second child should be a text node");
+    assert.equal(children.item(1).nodeType, doc.TEXT_NODE, "After split the second child should be a text node");
   });
 
   specify("allow_empty_nodelists", () => {
     let doc = extra.extra();
     let element = doc.createElement("test");
-    assert.strictEqual(element.children.length, 0);
+    assert.equal(element.children.length, 0);
   });
 
   specify("creating_text_nodes_with_falsy_values", () => {
     let doc = extra.extra();
 
     let txt1 = doc.createTextNode(0);
-    assert.strictEqual(txt1.nodeValue, "0");
+    assert.equal(txt1.nodeValue, "0");
 
     let txt2 = doc.createTextNode(false);
-    assert.strictEqual(txt2.nodeValue, "false");
+    assert.equal(txt2.nodeValue, "false");
 
     let txt3 = doc.createTextNode(null);
-    assert.strictEqual(txt3.nodeValue, "null");
+    assert.equal(txt3.nodeValue, "null");
 
     let txt4 = doc.createTextNode(NaN);
-    assert.strictEqual(txt4.nodeValue, "NaN");
+    assert.equal(txt4.nodeValue, "NaN");
 
     let txt5 = doc.createTextNode(undefined);
-    assert.strictEqual(txt5.nodeValue, "undefined");
+    assert.equal(txt5.nodeValue, "undefined");
 
     let txt7 = doc.createTextNode("");
-    assert.strictEqual(txt7.nodeValue, "");
+    assert.equal(txt7.nodeValue, "");
   });
 });

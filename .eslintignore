@@ -1,18 +1,9 @@
 node_modules
 
-benchmark/browser-bundle.js
-benchmark/browser-runner.html
-test/worker-bundle.js
-
 lib/jsdom/browser/default-stylesheet.js
 lib/jsdom/level3/xpath.js
 
 lib/jsdom/living/generated/**
-
-test/*.js
-!test/chai-helpers.js
-!test/karma*
-!test/util.js
 
 test/api/fixtures
 test/jquery-fixtures
